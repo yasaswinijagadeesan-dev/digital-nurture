@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bootstrap 5 Exercises</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="display-1">Bootstrap 5 Exercises</h1>
+    <p class="lead">Sample Bootstrap Page</p>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 bg-primary text-white p-3">
+            Column 1
+        </div>
+
+        <div class="col-12 col-md-6 col-lg-4 bg-warning p-3">
+            Column 2
+        </div>
+
+        <div class="col-12 col-md-12 col-lg-4 bg-success text-white p-3">
+            Column 3
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-secondary">Secondary</button>
+        <button class="btn btn-outline-danger">Danger</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

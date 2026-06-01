@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Community Event Portal</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:0;
+}
+
+nav{
+    background:#333;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-right:20px;
+}
+
+#welcomeBanner{
+    background:blue;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+
+.highlight{
+    background:yellow;
+    padding:3px;
+}
+
+table{
+    margin:auto;
+    border-collapse:collapse;
+}
+
+.imgStyle{
+    border:3px solid black;
+    width:180px;
+    height:120px;
+    cursor:pointer;
+}
+
+form{
+    background:white;
+    width:60%;
+    margin:auto;
+    padding:20px;
+    border-radius:10px;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+}
+
+button{
+    padding:10px 20px;
+    background:green;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+footer{
+    background:#333;
+    color:white;
+    text-align:center;
+    padding:10px;
+    margin-top:20px;
+}
+
+#location{
+    color:blue;
+    font-weight:bold;
+}
+</style>
+
+<script>
+let formChanged = false;
+
+function validatePhone(){
+    let phone = document.getElementById("phone").value;
+    let pattern = /^[0-9]{10}$/;
+
+    if(!pattern.test(phone)){
+        alert("Enter valid 10 digit phone number");
+    }
+}
+
+function showFee(){
+    let event = document.getElementById("eventType").value;
+    let fee = "";
+
+    if(event=="Music") fee="₹200";
+    else if(event=="Sports") fee="₹300";
+    else if(event=="Workshop") fee="₹500";
+    else fee="Free";
+
+    document.getElementById("feeDisplay").innerHTML =
+    "Event Fee : " + fee;
+
+    localStorage.setItem("preferredEvent", event);
+}
+
+function submitForm(){
+    document.getElementById("result").value =
+    "Registration Submitted Successfully!";
+}
+
+function enlargeImage(img){
+    if(img.style.width=="300px"){
+        img.style.width="180px";
+        img.style.height="120px";
+    }
+    else{
+        img.style.width="300px";
+        img.style.height="200px";
+    }
+}
+
+function countChars(){
+    let count =
+    document.getElementById("feedback").value.length;
+
+    document.getElementById("charCount").innerHTML =
+    "Characters : " + count;
+}
+
+window.onload = function(){
+    let saved = localStorage.getItem("preferredEvent");
+
+    if(saved){
+        document.getElementById("eventType").value = saved;
+        showFee();
+    }
+}
+
+function clearPreferences(){
+    localStorage.clear();
+    sessionStorage.clear();
+    alert("Preferences Cleared");
+}
+
+function findLocation(){
+
+    const options = {
+        enableHighAccuracy:true,
+        timeout:5000,
+        maximumAge:0
+    };
+
+    navigator.geolocation.getCurrentPosition(
+        function(position){
+            document.getElementById("location").innerHTML =
+            "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+        },
+
+        function(error){
+            switch(error.code){
+                case error.PERMISSION_DENIED:
+                    alert("Location Permission Denied");
+                    break;
+                case error.TIMEOUT:
+                    alert("Location Request Timed Out");
+                    break;
+                default:
+                    alert("Location Error");
+            }
+        },
+        options
+    );
+}
+
+window.onbeforeunload = function(){
+    if(formChanged){
+        return "You have unsaved changes!";
+    }
+}
+
+function videoReady(){
+    document.getElementById("videoMsg").innerHTML =
+    "Video Ready To Play";
+}
+</script>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <a href="#home">Home</a>
+    <a href="#events">Events</a>
+    <a href="#contact">Contact</a>
+    <a href="help.html" target="_blank">Help</a>
+</nav>
+
+<!-- Main -->
+<div id="welcomeBanner">
+    <h1>Welcome to Local Community Event Portal</h1>
+
+    <p>
+        Enjoy our
+        <span style="color:red;font-weight:bold;">
+            Special Offer!
+        </span>
+    </p>
+
+    <p class="highlight">
+        Register today and get event updates.
+    </p>
+</div>
+
+<section id="home">
+    <h2 class="highlight">Home</h2>
+    <p>Community activities and services portal.</p>
+</section>
+
+<section id="events">
+    <h2>Past Event Gallery</h2>
+
+    <table border="1">
+        <tr>
+            <td>
+                <img src="https://via.placeholder.com/180x120"
+                alt="Event 1"
+                title="Music Event"
+                class="imgStyle"
+                ondblclick="enlargeImage(this)">
+                <p>Music Festival</p>
+            </td>
+
+            <td>
+                <img src="https://via.placeholder.com/180x120"
+                alt="Event 2"
+                title="Sports Event"
+                class="imgStyle"
+                ondblclick="enlargeImage(this)">
+                <p>Sports Meet</p>
+            </td>
+
+            <td>
+                <img src="https://via.placeholder.com/180x120"
+                alt="Event 3"
+                title="Workshop"
+                class="imgStyle"
+                ondblclick="enlargeImage(this)">
+                <p>Workshop</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <img src="https://via.placeholder.com/180x120"
+                alt="Event 4"
+                title="Community Drive"
+                class="imgStyle"
+                ondblclick="enlargeImage(this)">
+                <p>Community Drive</p>
+            </td>
+
+            <td>
+                <img src="https://via.placeholder.com/180x120"
+                alt="Event 5"
+                title="Health Camp"
+                class="imgStyle"
+                ondblclick="enlargeImage(this)">
+                <p>Health Camp</p>
+            </td>
+
+            <td>
+                <img src="https://via.placeholder.com/180x120"
+                alt="Event 6"
+                title="Awareness Program"
+                class="imgStyle"
+                ondblclick="enlargeImage(this)">
+                <p>Awareness Program</p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<br>
+
+<section>
+<h2>Event Registration Form</h2>
+
+<form oninput="formChanged=true">
+
+<label>Name</label>
+<input type="text"
+placeholder="Enter Name"
+required
+autofocus>
+
+<label>Email</label>
+<input type="email"
+placeholder="Enter Email"
+required>
+
+<label>Phone</label>
+<input type="text"
+id="phone"
+onblur="validatePhone()"
+placeholder="Enter Phone Number"
+required>
+
+<label>Date</label>
+<input type="date" required>
+
+<label>Event Type</label>
+<select id="eventType" onchange="showFee()">
+    <option value="">Select Event</option>
+    <option>Music</option>
+    <option>Sports</option>
+    <option>Workshop</option>
+</select>
+
+<p id="feeDisplay"></p>
+
+<label>Message</label>
+<textarea rows="4"
+placeholder="Enter Message"></textarea>
+
+<label>Feedback</label>
+<textarea id="feedback"
+onkeyup="countChars()"
+rows="4"></textarea>
+
+<p id="charCount">Characters : 0</p>
+
+<button type="button"
+onclick="submitForm()">
+Submit
+</button>
+
+<br><br>
+
+<output id="result"></output>
+
+</form>
+</section>
+
+<br>
+
+<section>
+<h2>Event Promo Video</h2>
+
+<video width="400"
+controls
+oncanplay="videoReady()">
+<source src="sample.mp4" type="video/mp4">
+</video>
+
+<p id="videoMsg"></p>
+</section>
+
+<br>
+
+<section>
+<h2>Save Preferences</h2>
+
+<button onclick="clearPreferences()">
+Clear Preferences
+</button>
+</section>
+
+<br>
+
+<section>
+<h2>Nearby Events</h2>
+
+<button onclick="findLocation()">
+Find Nearby Events
+</button>
+
+<p id="location"></p>
+</section>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: community@portal.com</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2026 Local Community Event Portal</p>
+</footer>
+
+</body>
+</html>
