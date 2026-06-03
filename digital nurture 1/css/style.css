@@ -1,0 +1,186 @@
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+
+body{
+    font-family:'Poppins',sans-serif;
+    background-image:url("https://via.placeholder.com/1200x800");
+    background-color:#e6f2ff;
+    background-size:cover;
+    line-height:1.6;
+}
+
+
+
+#mainHeader{
+    background:rgba(0,123,255,0.8);
+    padding:20px;
+    text-align:center;
+}
+
+
+.navMenu{
+    list-style:none;
+    margin-top:10px;
+}
+
+.navMenu li{
+    display:inline-block;
+    margin:10px;
+    padding:5px;
+}
+
+
+
+a:link{
+    color:white;
+}
+
+a:visited{
+    color:yellow;
+}
+
+a:hover{
+    color:red;
+}
+
+a:active{
+    color:black;
+}
+
+/* Section Headers */
+
+h2{
+    background:linear-gradient(to right,#007BFF,#00C6FF);
+    color:white;
+    padding:10px;
+    margin-top:20px;
+    text-transform:uppercase;
+}
+
+/* Grouping Selector */
+
+h3,
+p{
+    color:#333;
+}
+
+/* Event Card */
+
+.eventCard{
+    background:white;
+    border:2px solid #007BFF;
+    padding:20px;
+    margin:20px;
+    outline:1px solid gray;
+}
+
+/* Main CTA Button */
+
+.cta-button{
+    background-color:#007BFF;
+    color:white;
+    padding:10px 15px;
+    border:none;
+    margin-top:10px;
+}
+
+/* Typography */
+
+p{
+    font-size:16px;
+    font-style:normal;
+    font-weight:400;
+    text-align:justify;
+    letter-spacing:1px;
+    line-height:1.8;
+}
+
+/* Table Styles */
+
+table{
+    width:90%;
+    margin:20px auto;
+    border-collapse:collapse;
+    text-align:center;
+}
+
+th,
+td{
+    border:1px solid black;
+    padding:10px;
+}
+
+th{
+    background:#007BFF;
+    color:white;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+/* Form Styles */
+
+input{
+    display:block;
+    width:80%;
+    margin:10px auto;
+    padding:10px;
+}
+
+input:focus{
+    outline:3px solid orange;
+}
+
+/* Multi Column Layout */
+
+.newsArticle{
+    column-count:2;
+    column-gap:30px;
+    column-rule:1px solid gray;
+    padding:20px;
+}
+
+/* Visibility Examples */
+
+.hiddenBox{
+    visibility:hidden;
+}
+
+.noneBox{
+    display:none;
+}
+
+/* Responsive Design */
+
+@media screen and (max-width:768px){
+
+    .navMenu li{
+        display:block;
+        margin:10px 0;
+    }
+
+    h1{
+        font-size:6vw;
+    }
+
+    h2{
+        font-size:4vw;
+    }
+
+    .eventCard{
+        width:90%;
+        margin:auto;
+    }
+
+    table{
+        width:100%;
+    }
+}
